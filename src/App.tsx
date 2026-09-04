@@ -9,8 +9,8 @@ import { initializeDatabase } from "./database/database";
 
 function App() {
   useEffect(() => {
-  initializeDatabase();
-}, []); //Database Intialiser
+initializeDatabase();
+}, []);
   const [page, setPage] = useState("library");
 
   const renderPage = () => {
