@@ -4,13 +4,18 @@ import { CREATE_GAMES_TABLE } from "./schema";
 let db: any = null;
 
 export async function initializeDatabase() {
-  if (db) return;
+  try {
+    if (db) return;
 
-  db = await Database.load("sqlite:gamevault.db");
+    db = await Database.load("sqlite:gamevault.db");
 
-  await db.execute(CREATE_GAMES_TABLE);
+    await db.execute(CREATE_GAMES_TABLE);
 
-  alert("Database initialized");;
+    console.log("GameVault database initialized");
+  } catch (error) {
+    console.error("Database initialization failed:", error);
+    throw error;
+  }
 }
 
 export async function getDatabase() {
