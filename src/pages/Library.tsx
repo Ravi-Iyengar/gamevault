@@ -36,8 +36,9 @@ export default function Library() {
           }}
         >
           <h3>{game.title}</h3>
-          <p>Released: {game.releaseYear}</p>
-        </div>
+<p>Playthroughs: {game.playthroughCount}</p>
+<p>Hours Played: {game.totalHoursPlayed}</p>
+<p>Latest Rating: {game.latestRating}/10</p>        </div>
       ))}
     </div>
   );

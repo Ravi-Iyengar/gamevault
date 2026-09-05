@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Library from "./pages/Library";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import GameDetail from "./pages/GameDetail";
 
 import { initializeDatabase } from "./database/database";
 
@@ -13,7 +14,7 @@ import {
 } from "./importers/BackloggdJsonImporter";
 
 function App() {
-  const [page, setPage] = useState("library");
+  const [page, setPage] = useState("game");
 
   useEffect(() => {
     async function startup() {
@@ -32,6 +33,14 @@ function App() {
 
       case "library":
         return <Library />;
+
+      case "game":
+        return (
+          <GameDetail
+            gameId="119171"
+            gameTitle="Baldur's Gate III"
+          />
+        );
 
       case "analytics":
         return <Analytics />;
@@ -74,6 +83,13 @@ function App() {
 
         <button onClick={() => setPage("library")}>
           Library
+        </button>
+
+        <br />
+        <br />
+
+        <button onClick={() => setPage("game")}>
+          Game Detail
         </button>
 
         <br />

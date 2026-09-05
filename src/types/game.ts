@@ -1,6 +1,5 @@
 export interface Game {
   id: string;
-  igdbId?: number;
 
   title: string;
 
@@ -9,4 +8,7 @@ export interface Game {
 
   summary?: string;
 
+  playthroughCount?: number;
+  latestRating?: number;
+  totalHoursPlayed?: number;
 }

@@ -1,10 +1,9 @@
-import { executeQuery, selectQuery } from "../database/database";
-import bg3Test from "../importers/Sample Data/bg3-test.json"
+import { executeQuery} from "../database/database";
+import bg3Test from "../importers/Sample Data/bg3-test.json";
 
 export { bg3Test };
 
-
-export async function importGame(gameData: any) { 
+export async function importGame(gameData: any) {
   await executeQuery(
     `
     INSERT OR IGNORE INTO Games (
@@ -30,8 +29,6 @@ export async function importGame(gameData: any) {
     );
   }
 
-  console.log(`Imported Game: ${gameData.name}`);
- 
 }
 
 async function importPlaythrough(
@@ -81,7 +78,43 @@ async function importPlaythrough(
     ]
   );
 
-  console.log(
-    `Imported Playthrough: ${playthrough.title}`
+  const playDates = playthrough.play_dates ?? [];
+
+  for (const playDate of playDates) {
+    await importPlaySession(
+      String(playthrough.id),
+      playDate
+    );
+  }
+
+}
+
+async function importPlaySession(
+  playthroughId: string,
+  playDate: any
+) {
+  await executeQuery(
+    `
+    INSERT OR IGNORE INTO PlaySessions (
+      Id,
+      PlaythroughId,
+      SessionDate,
+      Hours,
+      Minutes,
+      Note
+    )
+    VALUES (?, ?, ?, ?, ?, ?)
+    `,
+    [
+      String(playDate.id),
+      playthroughId,
+
+      playDate.range_start_date,
+
+      playDate.hours,
+      playDate.minutes,
+
+      playDate.note
+    ]
   );
 }
