@@ -1,28 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Dashboard from "./pages/Dashboard";
 import Library from "./pages/Library";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
-import { useEffect } from "react";
+
 import { initializeDatabase } from "./database/database";
 
+import {
+  importGame,
+  bg3Test
+} from "./importers/BackloggdJsonImporter";
+
 function App() {
-  useEffect(() => {
-initializeDatabase();
-}, []);
   const [page, setPage] = useState("library");
+
+  useEffect(() => {
+    async function startup() {
+      await initializeDatabase();
+
+      await importGame(bg3Test);
+    }
+
+    startup();
+  }, []);
 
   const renderPage = () => {
     switch (page) {
       case "dashboard":
         return <Dashboard />;
+
       case "library":
         return <Library />;
+
       case "analytics":
         return <Analytics />;
+
       case "settings":
         return <Settings />;
+
       default:
         return <Library />;
     }

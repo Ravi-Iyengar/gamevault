@@ -11,7 +11,7 @@ export default function Library() {
   }, []);
 
   const filteredGames = games.filter((game) =>
-    game.title.toLowerCase().includes(search.toLowerCase())
+    (game.title ?? "").toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -37,7 +37,6 @@ export default function Library() {
         >
           <h3>{game.title}</h3>
           <p>Released: {game.releaseYear}</p>
-          <p>Rating: {game.rating}/10</p>
         </div>
       ))}
     </div>

@@ -9,5 +9,4 @@ export interface Game {
 
   summary?: string;
 
-  rating?: number;
 }
