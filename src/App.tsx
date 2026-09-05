@@ -25,21 +25,31 @@ function App() {
 
     startup();
   }, []);
+const [selectedGameId, setSelectedGameId] =
+  useState<string>("");
 
+const [selectedGameTitle, setSelectedGameTitle] =
+  useState("");
   const renderPage = () => {
     switch (page) {
       case "dashboard":
         return <Dashboard />;
 
       case "library":
-        return <Library />;
+        return <Library
+  onSelectGame={(game) => {
+    setSelectedGameId(game.id);
+    setSelectedGameTitle(game.title);
+    setPage("game");
+  }}
+/>
 
       case "game":
         return (
           <GameDetail
-            gameId="119171"
-            gameTitle="Baldur's Gate III"
-          />
+  gameId={selectedGameId}
+  gameTitle={selectedGameTitle}
+/>
         );
 
       case "analytics":
@@ -49,7 +59,13 @@ function App() {
         return <Settings />;
 
       default:
-        return <Library />;
+        return <Library
+  onSelectGame={(game) => {
+    setSelectedGameId(game.id);
+    setSelectedGameTitle(game.title);
+    setPage("game");
+  }}
+/>
     }
   };
 

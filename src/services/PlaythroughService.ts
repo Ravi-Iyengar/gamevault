@@ -9,8 +9,8 @@ export async function getPlaythroughsByGameId(
     SELECT *
     FROM Playthroughs
     WHERE GameId = ?
-    ORDER BY StartDate
-    `,
+    ORDER BY StartDate DESC
+    `, 
     [gameId]
   );
 

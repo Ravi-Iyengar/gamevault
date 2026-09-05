@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import { getGames } from "../services/GameService";
 import { Game } from "../types/game";
 
-export default function Library() {
+
+interface Props {
+  onSelectGame: (game: Game) => void;
+}
+
+export default function Library({
+  onSelectGame,
+}: Props) {
   const [games, setGames] = useState<Game[]>([]);
   const [search, setSearch] = useState("");
 
@@ -28,7 +35,9 @@ export default function Library() {
       {filteredGames.map((game) => (
         <div
           key={game.id}
+          onClick = {() => onSelectGame(game)}
           style={{
+            cursor: "pointer",
             padding: "16px",
             marginTop: "12px",
             borderRadius: "8px",
