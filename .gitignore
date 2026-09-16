@@ -25,3 +25,8 @@ dist-ssr
 
 # Rust/Tauri
 target/
+
+# Personal library data — this contains real play history, ratings, and
+# review text once you import your own export. Never meant to be
+# published alongside the app's source code.
+src/importers/Sample Data/*.json

@@ -8,6 +8,16 @@
     "opener:default",
     "sql:default",
     "sql:allow-load",
-    "sql:allow-execute"
+    "sql:allow-execute",
+    "sql:allow-select",
+    "sql:allow-close",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://api.igdb.com/*" },
+        { "url": "https://id.twitch.tv/*" },
+        { "url": "https://images.igdb.com/*" }
+      ]
+    }
   ]
 }

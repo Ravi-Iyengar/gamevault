@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* GameVault is dark-mode-first per the spec's visual design direction
+   (Section 8: "Dark mode first"). There's no light theme toggle in V1 —
+   the whole app is built assuming a dark background throughout. */
+html, body, #root {
+  height: 100%;
+  background-color: #0b0f19;
+}
